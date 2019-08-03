@@ -25,17 +25,24 @@ class ViewController: UIViewController, UITextViewDelegate {
         textView.text = appDelegate.lastText
     }
 
+    // 削除ボタン
+    @IBAction func deleteButton(_ sender: Any) {
+        textView.text = ""
+        saveText()
+    }
 
     // TextViewに何か入力されたら動作します。
     func textViewDidChange(_ textView: UITextView) {
+        saveText()
+    }
+
+    /// 端末にデータを保存する
+    func saveText() {
         // AppDelegateを呼び出して変数に格納します。
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
         // AppDelegateに記述した"lastText"に入力されている内容を格納します。
         appDelegate.lastText = textView.text
-        //print(textView.text)
     }
 
-
 }
-
